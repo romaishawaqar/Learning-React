@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 
 function App() {
   const [Str, setStr] = useState('')
@@ -22,6 +22,13 @@ function App() {
 
   }, [Length, charallowed, numallowed, setStr])
 
+  const passRef = useRef(null)
+
+  const copyPassword = useCallback(()=>{
+    passRef.current?.select();
+    window.navigator.clipboard.writeText(Str);
+  }, [Str])
+
 
   useEffect(()=>{
     passwordGenerator()
@@ -36,8 +43,9 @@ function App() {
           value={Str}
           className='rounded-lg h-8 w-11/12 m-1'
           readOnly
+          ref={passRef}
         />
-        <button className=''>Copy</button>
+        <button onClick={copyPassword} className=''>Copy</button>
       </div>
       <div className='bg-green-400 h-40 m-4'>
         <div className='flex flex-wrap content-center'>
