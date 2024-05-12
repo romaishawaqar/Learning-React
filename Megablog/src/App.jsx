@@ -1,19 +1,43 @@
 import './App.css'
-import {Client} from 'appwrite'
+import {useDispatch} from 'react-redux'
+import { useState, useEffect } from 'react'
+import authService from './appwrite/auth'
+import { login, logout } from './store/authSlice'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+import {Outlet} from 'react-router-dom'
 
 function App() {
-  const client = new Client();
+  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
 
-  client
-      .setEndpoint('https://cloud.appwrite.io/v1')
-      .setProject('661c2472d7b72de1f329');
-  console.log(import.meta.env.VITE_APPWRITE_URL)
+  useEffect(() => {
+    authService.currentUser()
+    .then((userData) => {
+      if(userData){
+        dispatch(login({userData}))
+      }else{
+        dispatch(logout())
+      }
+    })
+    .finally(() => setLoading(false))
+  }, [])
 
-  return (
-    <>
-      <h1>Hello, vivek this side</h1>
-    </>
-  )
+  if(!loading){
+    return (
+      <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+        <div className='w-full block'>
+          <Header />
+          <main>
+            Todo: <Outlet />
+          </main>
+          <Footer />
+        </div>
+      </div>
+    )
+  }else{
+
+  }
 }
 
 export default App
