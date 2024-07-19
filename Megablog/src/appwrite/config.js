@@ -28,7 +28,7 @@ export class Service {
         }
       );
     } catch (error) {
-      console.log("Appwrite serive :: getCurrentUser :: error", error);
+      console.log("Appwrite service :: getCurrentUser :: error", error);
     }
   }
   async updatePost(slug, { title, content, featuredImage, status }) {
@@ -45,7 +45,7 @@ export class Service {
         }
       );
     } catch (error) {
-      console.log("Appwrite serive :: getCurrentUser :: error", error);
+      console.log("Appwrite service :: getCurrentUser :: error", error);
     }
   }
   async deletePost(slug) {
@@ -57,7 +57,7 @@ export class Service {
       );
       return true;
     } catch (error) {
-      console.log("Appwrite serive :: getCurrentUser :: error", error);
+      console.log("Appwrite service :: getCurrentUser :: error", error);
       return false;
     }
   }
@@ -69,7 +69,7 @@ export class Service {
         slug
       );
     } catch (error) {
-      console.log("Appwrite serive :: getCurrentUser :: error", error);
+      console.log("Appwrite service :: getCurrentUser :: error", error);
       return false;
     }
   }
@@ -78,10 +78,10 @@ export class Service {
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollection_Id,
-        queries
+        queries,
       );
     } catch (error) {
-      console.log("Appwrite serive :: getCurrentUser :: error", error);
+      console.log("Appwrite service :: getCurrentUser :: error", error);
       return false;
     }
   }
@@ -93,7 +93,7 @@ export class Service {
         file
       );
     } catch (error) {
-      console.log("Appwrite serive :: getCurrentUser :: error", error);
+      console.log("Appwrite service :: getCurrentUser :: error", error);
       return false;
     }
   }
@@ -105,7 +105,7 @@ export class Service {
       );
       return true;
     } catch (error) {
-      console.log("Appwrite serive :: getCurrentUser :: error", error);
+      console.log("Appwrite service :: getCurrentUser :: error", error);
       return false;
     }
   }
