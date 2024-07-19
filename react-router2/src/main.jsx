@@ -9,6 +9,8 @@ import About from './components/About/About'
 import Ewaste from './components/Ewaste/Ewaste'
 import User from './components/User/User'
 import Github from './components/Github/Github'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // const route = createBrowserRouter([
 //   {
